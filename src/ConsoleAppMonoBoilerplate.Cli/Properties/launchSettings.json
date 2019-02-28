@@ -1,0 +1,7 @@
+{
+    "profiles": {
+        "ConsoleAppMonoBoilerplate.Cli": {
+            "commandName": "Project"
+        }
+    }
+}
