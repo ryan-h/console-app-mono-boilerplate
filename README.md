@@ -1,4 +1,4 @@
-﻿# console-app-mono-boilerplate
+# console-app-mono-boilerplate
 
 This repo provides a boilerplate project for creating cross-platform .net core console applications using a command-line interface (CLI) parsed by Mono.Options. The motivation behind this project is to help demonstrate the use of *commands* with the Mono.Options library, while leveraging .net core dependency injection to simplify the integration of these commands into a functional application. The project provides a good starting point that allows a developer to focus on the commands and functionality of the app without spending time on the setup.
 
@@ -106,6 +106,57 @@ public Command BuildCommand()
             // ...
 
             await callApiResource();
+        }
+    };
+}
+```
+
+#### Help Output
+
+The help descriptions for the main application, and for each registered command, will be output automatically by Mono.Options when the help flag is passed:
+
+`myconsoleapp help|--help|-h` <br/>
+`myconsoleapp mycommand --help|-h`
+
+*Note: directions for help usage are also included in the message for some exceptions.*
+
+##### Customize the command help
+
+The help description can be customized by providing a help option for the command. This will override the built-in help output and allow for handling this in the *CommandBuilder* service.
+
+``` csharp
+public Command BuildCommand()
+{
+    var showHelp = false;
+         
+    var options = new OptionSet
+    {
+        "Usage: mycommand [options]",
+        {
+            "help", "", h =>
+            {
+                showHelp = h != null;
+            },
+            true // hide the option since it's already shown as a global app option
+        }
+    };
+
+    return new Command("mycommand", "My command help description.")
+    {
+        Options = options,
+        Run = args =>
+        {
+            if (showHelp)
+            {
+                // optionally output the option description (the default help output)
+                Reporter.Output.WriteOptionDescriptions(options);
+                // output the custom help description using the Reporter
+                Reporter.Output.WriteLine("My additional custom help description.");
+
+                return;
+            }
+
+            // ... the code to execute when help is not passed
         }
     };
 }
