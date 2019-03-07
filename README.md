@@ -36,7 +36,7 @@ First create a new command builder that implements the `ICommandBuilder` interfa
 
 `public class NewCommandBuilder : ICommandBuilder`
 
-Next, implement the `BuildCommand` method to setup the command and incorporate additional functionality in the service class. See the example below and the included `WeatherCommandBuilder.cs` file, also check out [Mono.Options](https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Optionshttps://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options) for more details.
+Next, implement the `BuildCommand` method to setup the command and incorporate additional functionality in the service class. See the example below and the included `WeatherCommandBuilder.cs` file, also check out [Mono.Options](https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options) for more details.
 
 *Note: at a minimum an OptionSet with help output must be configured.*
 
