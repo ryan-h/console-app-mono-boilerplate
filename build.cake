@@ -14,8 +14,6 @@ var runtime = EnvironmentVariable("runtime");
 var buildOutputDirectory = Directory("./dist");
 
 var solutionFile = File("./ConsoleAppMonoBoilerplate.sln");
-var projectFile = Directory("./src") + Directory("ConsoleAppMonoBoilerplate.Cli") 
-  + File("ConsoleAppMonoBoilerplate.cli.csproj");
 
 //////////////////////////////////////////////////////////////////////
 // TASKS
@@ -24,8 +22,6 @@ var projectFile = Directory("./src") + Directory("ConsoleAppMonoBoilerplate.Cli"
 var tasks = new
 {
     Clean = "Clean",
-    Restore = "Restore",
-    Build = "Build",
     Publish = "Publish"
 };
 
@@ -48,44 +44,12 @@ Task(tasks.Clean)
         Information($"Cleaning {MakeAbsolute(buildOutputDirectory)}...");
 
          // clean the main build output directory
-        CleanDirectory(buildOutputDirectory);      
-    });
-
-Task(tasks.Restore)
-    .Description("Restores NuGet packages.")
-    .Does(() =>
-    {
-        Information("Restoring the solution packages...");
-
-        // restore all the packages for the solution
-        DotNetCoreRestore(solutionFile, new DotNetCoreRestoreSettings
-        {
-            NoCache = true,
-            DisableParallel = true,
-            Verbosity = DotNetCoreVerbosity.Normal
-        });
-    });
-
-Task(tasks.Build)
-    .Description("Builds the solution.")
-    .IsDependentOn(tasks.Clean)
-    .IsDependentOn(tasks.Restore)
-    .Does(() =>
-    {
-        Information("Building the solution...");
-
-        // build the solution
-        DotNetCoreBuild(solutionFile, new DotNetCoreBuildSettings
-        {
-            Configuration = configuration,
-            NoRestore = true,
-            Verbosity = DotNetCoreVerbosity.Normal
-        });
+        CleanDirectory(buildOutputDirectory);
     });
 
 Task(tasks.Publish)
     .Description("Publishes the solution.")
-    .IsDependentOn(tasks.Build)
+    .IsDependentOn(tasks.Clean)
     .Does(() =>
     {
         var publishSettings = new DotNetCorePublishSettings
@@ -99,7 +63,7 @@ Task(tasks.Publish)
         {
             Information("Publishing the solution for a framework-dependent deployment...");
 
-            DotNetCorePublish(projectFile, publishSettings);
+            DotNetCorePublish(solutionFile, publishSettings);
         }
         else
         {
@@ -116,7 +80,7 @@ Task(tasks.Publish)
                 publishSettings.OutputDirectory = buildOutputDirectory + Directory(runtime);
 
                 // publish the cli for the specified runtime
-                DotNetCorePublish(projectFile, publishSettings);
+                DotNetCorePublish(solutionFile, publishSettings);
             }
         }
     });
