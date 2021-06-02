@@ -1,6 +1,6 @@
 # console-app-mono-boilerplate
 
-This repo provides a boilerplate project for creating cross-platform .net core console applications using a command-line interface (CLI) parsed by Mono.Options. The motivation behind this project is to help demonstrate the use of *commands* with the Mono.Options library, while leveraging .net core dependency injection to simplify the integration of these commands into a functional application. The project provides a good starting point that allows a developer to focus on the commands and functionality of the app without spending time on the setup.
+This repo provides a boilerplate project for creating cross-platform .net console applications using a command-line interface (CLI) parsed by Mono.Options. The motivation behind this project is to help demonstrate the use of *commands* with the Mono.Options library, while leveraging .net core dependency injection to simplify the integration of these commands into a functional application. The project provides a good starting point that allows a developer to focus on the commands and functionality of the app without spending time on the setup.
 
 *You must have the [.NET 5 SDK](https://dotnet.microsoft.com/download) or higher installed to use this project.*
 
