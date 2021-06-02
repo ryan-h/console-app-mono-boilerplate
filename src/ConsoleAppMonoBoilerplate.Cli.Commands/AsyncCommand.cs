@@ -40,16 +40,16 @@ namespace ConsoleAppMonoBoilerplate.Cli.Commands
         /// <returns></returns>
         public override int Invoke(IEnumerable<string> arguments)
         {
-            var rest = Options?.Parse(arguments) ?? arguments;
+            var strings = Options?.Parse(arguments) ?? arguments;
 
             try
             {
-                Run?.Invoke(rest).Wait();
+                Run?.Invoke(strings).Wait();
             }
             catch (AggregateException ae)
             {
                 // re-throw the original exception preserving the state when it was captured
-                ExceptionDispatchInfo.Capture(ae.InnerException).Throw();
+                ExceptionDispatchInfo.Capture(ae.InnerException ?? ae).Throw();
             }
 
             return 0;

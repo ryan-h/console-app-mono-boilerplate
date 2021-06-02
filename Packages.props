@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+    <ItemGroup>
+        <PackageReference Update="Microsoft.Extensions.Configuration" Version="5.0.0" />
+        <PackageReference Update="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+        <PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+        <PackageReference Update="Microsoft.Extensions.Options" Version="5.0.0" />
+        <PackageReference Update="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+        <PackageReference Update="Mono.Options" Version="6.6.0.161" />
+    </ItemGroup>
+</Project>

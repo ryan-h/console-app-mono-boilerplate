@@ -19,6 +19,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{0F80B7BF-5AF1-4241-80F4-82A88741F8BD}"
 	ProjectSection(SolutionItems) = preProject
 		build.cake = build.cake
+		Directory.Build.props = Directory.Build.props
+		Packages.props = Packages.props
 	EndProjectSection
 EndProject
 Global

@@ -2,7 +2,7 @@
 
 This repo provides a boilerplate project for creating cross-platform .net core console applications using a command-line interface (CLI) parsed by Mono.Options. The motivation behind this project is to help demonstrate the use of *commands* with the Mono.Options library, while leveraging .net core dependency injection to simplify the integration of these commands into a functional application. The project provides a good starting point that allows a developer to focus on the commands and functionality of the app without spending time on the setup.
 
-*You must have [.NET Core 2.2 SDK](https://dotnet.microsoft.com/download) or higher installed to use this project.*
+*You must have the [.NET 5 SDK](https://dotnet.microsoft.com/download) or higher installed to use this project.*
 
 ## Command Structure
 
@@ -209,6 +209,8 @@ Publish the solution using [PowerShell](https://docs.microsoft.com/en-us/powersh
 To set the *runtime* to windows, first you will need to set the environment variable:
 
 `$env:runtime="win-x64"`
+
+*Note: a framework-dependent deployment will be published if a runtime is not specified.*
 
 Next run the build script at the root:
 

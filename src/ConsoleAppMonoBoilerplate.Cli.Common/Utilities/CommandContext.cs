@@ -13,7 +13,7 @@ namespace ConsoleAppMonoBoilerplate.Cli.Common.Utilities
         /// <summary>
         ///     Gets the verbose flag from the environment variable.
         /// </summary>
-        private static Lazy<bool> _verbose = new Lazy<bool>(() =>
+        private static Lazy<bool> _verbose = new (() =>
             bool.Parse(Environment.GetEnvironmentVariable(EnvironmentVariable.Verbose) ?? bool.FalseString));
 
         #endregion

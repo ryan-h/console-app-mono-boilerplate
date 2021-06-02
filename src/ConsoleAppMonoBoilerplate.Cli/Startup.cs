@@ -16,7 +16,7 @@ namespace ConsoleAppMonoBoilerplate.Cli
         /// <summary>
         ///     The configuration for the app settings.
         /// </summary>
-        public IConfigurationRoot Configuration { get; set; }
+        private readonly IConfigurationRoot _configuration;
 
         #endregion
 
@@ -28,10 +28,10 @@ namespace ConsoleAppMonoBoilerplate.Cli
         public Startup()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
+                .SetBasePath(Directory.GetParent(AppContext.BaseDirectory)?.FullName)
                 .AddJsonFile("appsettings.json", true);
 
-            Configuration = builder.Build();
+            _configuration = builder.Build();
         }
 
         #endregion
@@ -61,7 +61,7 @@ namespace ConsoleAppMonoBoilerplate.Cli
         {
             services.AddOptions();
 
-            services.Configure<WeatherOptions>(Configuration.GetSection(nameof(WeatherOptions)));
+            services.Configure<WeatherOptions>(_configuration.GetSection(nameof(WeatherOptions)));
             
             // register additional configuration options here
         }

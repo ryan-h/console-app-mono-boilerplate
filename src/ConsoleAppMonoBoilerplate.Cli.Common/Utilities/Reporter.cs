@@ -13,7 +13,7 @@ namespace ConsoleAppMonoBoilerplate.Cli.Common.Utilities
         /// <summary>
         ///     A null reporter used when output should not be written.
         /// </summary>
-        private static readonly Reporter _nullReporter = new Reporter(null);
+        private static readonly Reporter _nullReporter = new (null);
 
         /// <summary>
         ///     The console writer used by the reporter.

@@ -9,7 +9,7 @@ using Mono.Options;
 
 namespace ConsoleAppMonoBoilerplate.Cli
 {
-    public class Program
+    public static class Program
     {
         #region Methods
 
@@ -66,7 +66,7 @@ namespace ConsoleAppMonoBoilerplate.Cli
                 $"Usage: {ProgramInfo.AssemblyName} [options] [command] [arguments] [command-options]",
                 "",
                 "Options:",
-                { "h|help", "Show help.", h => {} },
+                { "h|help", "Show help.", _ => {} },
                 { "v|verbose", "Set the command output to be verbose.", verbose =>
                     {
                         if (verbose == null)
