@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppMonoBoilerplate.Cli", "src\ConsoleAppMonoBoilerplate.Cli\ConsoleAppMonoBoilerplate.Cli.csproj", "{2BBA271D-64B5-480B-BFCC-E77947E24F84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppMonoBoilerplate", "src\ConsoleAppMonoBoilerplate\ConsoleAppMonoBoilerplate.csproj", "{2BBA271D-64B5-480B-BFCC-E77947E24F84}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C51D6A93-5F64-4458-9C6B-A172350F7337}"
 EndProject
@@ -12,15 +12,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".misc", ".misc", "{ACEBB879
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppMonoBoilerplate.Cli.Commands", "src\ConsoleAppMonoBoilerplate.Cli.Commands\ConsoleAppMonoBoilerplate.Cli.Commands.csproj", "{49825DCF-F446-4565-B19C-5A414D99DC50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppMonoBoilerplate.Commands", "src\ConsoleAppMonoBoilerplate.Commands\ConsoleAppMonoBoilerplate.Commands.csproj", "{49825DCF-F446-4565-B19C-5A414D99DC50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppMonoBoilerplate.Cli.Common", "src\ConsoleAppMonoBoilerplate.Cli.Common\ConsoleAppMonoBoilerplate.Cli.Common.csproj", "{FCED4D47-C323-45DC-9892-09D2A040B1C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppMonoBoilerplate.Common", "src\ConsoleAppMonoBoilerplate.Common\ConsoleAppMonoBoilerplate.Common.csproj", "{FCED4D47-C323-45DC-9892-09D2A040B1C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{0F80B7BF-5AF1-4241-80F4-82A88741F8BD}"
 	ProjectSection(SolutionItems) = preProject
-		build.cake = build.cake
 		Directory.Build.props = Directory.Build.props
-		Packages.props = Packages.props
+		Directory.Packages.props = Directory.Packages.props
+		global.json = global.json
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Global

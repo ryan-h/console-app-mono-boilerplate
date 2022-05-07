@@ -2,7 +2,7 @@
 
 This repo provides a boilerplate project for creating cross-platform .net console applications using a command-line interface (CLI) parsed by Mono.Options. The motivation behind this project is to help demonstrate the use of *commands* with the Mono.Options library, while leveraging .net core dependency injection to simplify the integration of these commands into a functional application. The project provides a good starting point that allows a developer to focus on the commands and functionality of the app without spending time on the setup.
 
-*You must have the [.NET 5 SDK](https://dotnet.microsoft.com/download) or higher installed to use this project.*
+*You must have the [.NET 6 SDK](https://dotnet.microsoft.com/download) or higher installed to use this project.*
 
 ## Command Structure
 
@@ -58,7 +58,7 @@ public Command BuildCommand()
             { "o|option1", "The option1 help description.", opt =>
                 {
                     // example - set to a local variable to know if the option was passed
-                    option1 = opt != null;
+                    option1 = opt is not null;
                 }
             },
             { "v|value1=", "The value1 help description.", opt =>
@@ -82,9 +82,8 @@ public Command BuildCommand()
 
 #### Register the service
 
-Finally, the new service will need to be added to the configuration in *Startup.cs*.
+Finally, the new service will need to be added to the configuration in *Program.cs*.
 
-In the `configureCommands` method add the new service:
 
 `services.AddTransient<ICommandBuilder, NewCommandBuilder>();`
 
@@ -135,7 +134,7 @@ public Command BuildCommand()
         {
             "help", "", h =>
             {
-                showHelp = h != null;
+                showHelp = h is not null;
             },
             true // hide the option since it's already shown as a global app option
         }
@@ -186,34 +185,18 @@ The project has been setup to use the options pattern in .net core. The pattern 
 
   - Add a property for the option to the *appsettings.json* file in the CLI project
   - Add a new option model to the Common project
-  - Register the option in the *Startup.cs* file using the `configureOptions` method
+  - Register the option in the *Program.cs* file using the `configureOptions` method
 
 ## Packaging
-
-There are a few options for getting a published executable for the CLI.
-
-#### Using the dotnet CLI
 
 Publish the solution directly using the [dotnet](https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x) CLI.
 
 Run the following command to create an executable for windows:
 
-`dotnet publish /Path/To/ConsoleAppMonoBoilerplate.sln -r win-x64`
+`dotnet publish /Path/To/ConsoleAppMonoBoilerplate.csproj -r win-x64 --self-contained`
 
-This will create a "win-x64" directory in the release bin of the CLI project.
+This will create a "win-x64" directory in the release bin of the CLI project, or you can specify the output directory when publishing:
 
-#### Using the Cake build script
+`dotnet publish /Path/To/ConsoleAppMonoBoilerplate.csproj -o c:\output -r win-x64 --self-contained`
 
-Publish the solution using [PowerShell](https://docs.microsoft.com/en-us/powershell/) to execute the Cake build script.
-
-To set the *runtime* to windows, first you will need to set the environment variable:
-
-`$env:runtime="win-x64"`
-
-*Note: a framework-dependent deployment will be published if a runtime is not specified.*
-
-Next run the build script at the root:
-
-`./build.ps1`
-
-This will publish the "win-x64" content to the build output directory ("dist").
+*Note: the project is setup to support the following runtimes: win-x64, linux-x64, and osx-x64.*
